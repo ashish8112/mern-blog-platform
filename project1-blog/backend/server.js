@@ -4,12 +4,14 @@ const cors = require("cors")
 const connectDB = require("./config/db")
 const authRouter = require("./routes/authRoutes")
 const postRouter = require("./routes/postRoutes");
+const commentRouter = require("./routes/commentRoute");
 const app=express();
 
 app.use(express.json());
 app.use(cors());
 app.use("/api/auth",authRouter);
 app.use("/api/posts",postRouter)
+app.use("/api/comments/",commentRouter)
 app.use((req,res)=>{
     return res.status(404).json({message:"Please Enter correct url"})
 })
