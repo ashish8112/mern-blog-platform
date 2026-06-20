@@ -7,11 +7,11 @@ export default function AuthProvider({children}){
         const [user,setUser] = useState(
             JSON.parse(localStorage.getItem("blogUser"))||null
         );
-        async function register (username,name,email,password){
+        async function register ({username,name,email,password}){
             const {data} = await API.post("/auth/register",{username,name,email,password})
             return data;
         }
-        async function login(email,password){
+        async function login({email,password}){
             const {data} = await API.post("/auth/login",{email,password})
             localStorage.setItem("blogUser",JSON.stringify(data));
             setUser(data);
