@@ -18,6 +18,7 @@ export default function Login(){
             }
         try{
             await login(formData);
+            alert("Logged In Succesfully");
             navigate("/")
         }
         catch(err){
