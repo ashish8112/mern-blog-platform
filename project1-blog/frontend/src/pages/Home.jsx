@@ -23,7 +23,7 @@ export default function Home(){
     return(
         <div> 
        {posts.map((post,index)=>(
-        <div key={post._id}> Post {index+1}
+        <div key={post._id}> Post {index+1} 
         <img src= "https://picsum.photos/200/200" height={200} width={200} />
         <p>{post.title}</p>
         <p>{post.content}</p>
