@@ -27,8 +27,8 @@ export default function Home(){
         <button onClick={()=>navigate("/create")} style={{color:"blue",fontSize:"24px", padding: "10px 20px"}}>Create Post</button>
        {posts.map((post,index)=>(
         <div key={post._id}> Post {index+1} 
-        <img src= "https://picsum.photos/200/200" height={200} width={200} />
-        <p>{post.title}</p>
+        <img src= {post.coverImage} height={200} width={200} />
+        <p onClick={navigate(`/post/${post._id}`)} style={{cursor:"pointer",color:"blue"}}>{post.title}</p>
         <p>{post.content}</p>
         <p>{post.summary}</p>
         <p>{post.author}</p>
