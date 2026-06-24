@@ -1,8 +1,10 @@
 import { useState,useEffect } from "react"
 import API from "../api/axios";
+import {useNavigate} from "react-router-dom"
 export default function Home(){
     const [posts,setPost] = useState([]);
     const [loading,setLoading]=useState(true);
+    const navigate = useNavigate();
     useEffect(()=>{
         async function postFetch(){
             try{
@@ -21,7 +23,8 @@ export default function Home(){
     if(loading)
         return <p>loading...</p>
     return(
-        <div> 
+        <div>
+        <button onClick={()=>navigate("/create")} style={{color:"blue",fontSize:"24px", padding: "10px 20px"}}>Create Post</button>
        {posts.map((post,index)=>(
         <div key={post._id}> Post {index+1} 
         <img src= "https://picsum.photos/200/200" height={200} width={200} />
