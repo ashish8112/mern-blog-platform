@@ -46,7 +46,7 @@ project1-blog/
 │   ├── middleware/authMiddleware.js
 │   ├── server.js
 │   └── .env
-├── blog-frontend/
+├── frontend/
 │   ├── src/
 │   │   ├── api/axios.js
 │   │   ├── context/AuthContext.jsx
