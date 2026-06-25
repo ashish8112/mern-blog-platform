@@ -120,15 +120,15 @@ Frontend runs on `http://localhost:5000`
 
 ---
 
-## What I Learned
+## What I Learned During Development
 
 - Connecting React frontend to Express backend
-- JWT auth flow — register, login, token storage, protected routes
-- Mongoose populate for replacing ObjectIds with actual data
-- Axios interceptors for automatic token attachment
-- MongoDB operators — $addToSet, $pull for array operations
-- AuthContext for global state management across components
-- Ownership checks — only authors can edit/delete their own content
+- JWT auth flow register, login, token storage, protected routes
+- Mongoose populate for replacing ObjectIds with actual data for author name
+- Axios interceptors for automatic token attachment of jwt as header
+- MongoDB operators  $addToSet, $pull for array operations like Magic Array
+- AuthContext for global state management across components 
+- Ownership checks  only authors can edit/delete their own content in backend routes
 
 ---
 
