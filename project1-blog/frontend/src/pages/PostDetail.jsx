@@ -1,11 +1,12 @@
 import { useState,useEffect } from "react";
 import API from "../api/axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 export default function PostDetail(){
     const [post,setPost] = useState(null);
     const [comments,setComment] = useState([]);
     const [commentText, setCommentText] = useState("");
     const {id} = useParams();
+    const navigate = useNavigate();
     useEffect(()=>{
         async function fetchPostDetails(){
             try{
@@ -21,6 +22,7 @@ export default function PostDetail(){
         }
         fetchPostDetails();
     },[])
+
     async function handleComment() {
   if (!commentText) return;
   try {
@@ -31,6 +33,17 @@ export default function PostDetail(){
     alert(err.response?.data?.message || "Comment failed");
   }
 }
+
+    async function handleLike(){
+        try{
+            const {data} = await API.post(`/posts/${id}/like`)
+            setPost({...post,likes:data.likes})
+        }
+        catch(err){
+            alert(err.response?.data?.message || "Like failed");
+            navigate("/login")
+        }
+    }
     if(!post)
         return <p>loading...</p>
     return(
@@ -42,7 +55,7 @@ export default function PostDetail(){
                 <p>{post.content}</p>
                 <p>{post.summary}</p>
                 <p>{post.author}</p>
-                <p>{post.likes.length}</p>
+                <button onClick={handleLike}>Like {post.likes.length}</button>
             </div>
             <div className="comments">
                 <label htmlFor="comments">comments</label>
