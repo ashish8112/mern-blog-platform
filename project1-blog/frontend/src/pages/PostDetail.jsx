@@ -31,6 +31,7 @@ export default function PostDetail(){
     setCommentText("");
   } catch (err) {
     alert(err.response?.data?.message || "Comment failed");
+    navigate("/login");
   }
 }
 
@@ -54,7 +55,7 @@ export default function PostDetail(){
                 <img src= {post.coverImage} height={200} width={200} />
                 <p>{post.content}</p>
                 <p>{post.summary}</p>
-                <p>{post.author}</p>
+                <p>Author- {post.author.name}</p>
                 <button onClick={handleLike}>Like {post.likes.length}</button>
             </div>
             <div className="comments">
@@ -62,13 +63,13 @@ export default function PostDetail(){
                 <br></br>
                 {comments.map((comment)=>(
                     <div key={comment._id}>
-                    <p>Name- {comment.author}</p>
-                    <p>{comment.content}</p>
+                    <p>Name- {comment.author.name}</p>
+                    <p>Comment- {comment.content}</p>
                      </div>
                 ))}    
             </div>
             <input value={commentText} onChange={(e) => setCommentText(e.target.value)} placeholder="Write a comment..." />
-            <button onClick={handleComment}>Comment</button>
+            <button onClick={handleComment} id="commentButton">Comment</button>
         </div>
     )
 }

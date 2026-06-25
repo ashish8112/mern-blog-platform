@@ -30,6 +30,7 @@ export default function Login(){
     }
     return(
         <form onSubmit={handleSubmit}>
+            <p id="heading">Login</p>
             <label htmlFor="user-email">Enter the email</label>
             <br></br>
             <input
