@@ -6,10 +6,10 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 router.get("/:id",async(req,res)=>{
     try{
-        const post = await Post.findById(req.params.id)
+        const post = await Post.findById(req.params.id);
         if(!post)
             return res.status(404).json({message:"Post not found"})
-        const comments = await Comment.find({post:req.params.id}) // it return [] in case of empty not null so  !comment will always true
+        const comments = await Comment.find({post:req.params.id}).populate("author", "name username") // it return [] in case of empty not null so  !comment will always true
         if(comments.length===0)
             return res.status(404).json({message:"Not comments"})
         return res.status(200).json(comments);
@@ -21,7 +21,7 @@ router.get("/:id",async(req,res)=>{
 
 router.post("/:id",authMiddleware,async(req,res)=>{
     try{
-        const post = await Post.findById(req.params.id)
+        const post = await Post.findById(req.params.id);
         if(!post)
             return res.status(404).json({message:"Post not found"})
         const {content} = req.body;

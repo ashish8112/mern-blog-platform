@@ -5,7 +5,7 @@ const authMiddleware = require("../middleware/authMiddleware")
 
 router.get("/",async(req,res)=>{
     try{
-        const posts = await Post.find({});
+        const posts = await Post.find({}).populate("author", "name username");
         res.status(200).json(posts);
     }
     catch(err)
@@ -30,7 +30,7 @@ router.post("/",authMiddleware,async(req,res)=>{
 router.get("/my/posts",authMiddleware,async(req,res)=>{
     try{
         const {id} = req.user;
-        const myPosts =await Post.find({author:id})
+        const myPosts =await Post.find({author:id}).populate("author", "name username");
         if(myPosts.length===0)
             return  res.status(404).json({message:"No Post"});
         return res.status(200).json(myPosts);
@@ -44,7 +44,7 @@ router.get("/my/posts",authMiddleware,async(req,res)=>{
 router.get("/:id",async(req,res)=>{
     try{
         const id = req.params.id;
-        const post = await Post.findById(id);
+        const post = await Post.findById(id).populate("author", "name username");;
         if(!post)
             return res.status(404).json({message:"Post doesn't exists"})
         res.status(200).json(post);
