@@ -40,13 +40,13 @@ export default function  Dashboard(){
     return(
         <div>
             {posts.map((post,index)=>(
-                <div key={post._id}>
+                <div key={post._id} className="post-card">
                 <h2>Post {index+1}</h2>
                 <img src= {post.coverImage} height={200} width={200} />
                 <p onClick={()=>navigate(`/post/${post._id}`)} style={{cursor:"pointer",color:"blue"}}>{post.title}</p>
                 <p>{post.content}</p>
                 <p>{post.summary}</p>
-                <p>{post.author}</p>
+                <p>{post.author.name}</p>
                 <button onClick={()=>handleClick(post._id)}>Like {post.likes.length}</button>
                 </div>
             ))}
