@@ -29,6 +29,7 @@ router.post("/:id",authMiddleware,async(req,res)=>{
             return res.status(400).json({message:"Nohing to post"})
         const comment = new Comment({post:req.params.id,author:req.user.id,content})
         await comment.save();
+        await comment.populate("author", "name username");
         res.status(201).json(comment);
     }
     catch(err){
