@@ -30,6 +30,16 @@ export default function  Dashboard(){
             navigate("/login");
         }
     }
+    async function handleDelete(postId) {
+        try {
+            await API.delete(`/posts/${postId}`);
+            setPost(posts.filter(p => p._id !== postId));
+        } 
+        catch (err) {
+        alert(err.response?.data?.message || "Delete failed");
+        return;
+        }
+}
     if(posts.length===0)
         return(
                 <div>
@@ -48,6 +58,7 @@ export default function  Dashboard(){
                 <p>{post.summary}</p>
                 <p>{post.author.name}</p>
                 <button onClick={()=>handleClick(post._id)}>Like {post.likes.length}</button>
+                <button style={{marginLeft:"70%"}}onClick={() => handleDelete(post._id)}>Delete</button>
                 </div>
             ))}
         </div>
