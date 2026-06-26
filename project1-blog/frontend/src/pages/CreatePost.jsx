@@ -18,7 +18,7 @@ export default function CreatePost(){
     async function handleSubmit(e){
         e.preventDefault();
          const extractedTags = postData.content.match(/#\w+/g)?.map(tag => tag.slice(1)) || [];
-        if(!postData.title||!postData.content||!postData.summary||!postData.coverImage)
+        if(!postData.title||!postData.content||!postData.summary)
         {
             alert("Please Enter all filed")
             return;
