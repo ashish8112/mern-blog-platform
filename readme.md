@@ -81,7 +81,7 @@ npm run dev
 
 **Frontend:**
 ```bash
-cd project1-blog/blog-frontend
+cd project1-blog/frontend
 npm install
 npm run dev
 ```
