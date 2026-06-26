@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
          const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     if(!token)
-        return res.status(401).json({message:"Token is missing"})
+        return res.status(401).json({message:"Login First"})
     const decoded=jwt.verify(token,process.env.JWT_SECRET)
     req.user=decoded;
     next();
