@@ -22,7 +22,7 @@ export default function AuthProvider({children}){
             setUser(null);
         }
         return(
-            <AuthContext.Provider value= {{user,login,logout,register}}> // return these function to use across app
+            <AuthContext.Provider value= {{user,login,logout,register}}>
             {children}
             </AuthContext.Provider>
         )
