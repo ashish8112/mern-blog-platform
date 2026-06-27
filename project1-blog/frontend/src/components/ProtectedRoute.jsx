@@ -6,7 +6,7 @@ export default function ProtectedRoute({children}){
     if(!user)
         return <Navigate to="/login" replace/>
     try{
-        const decode = jwtDecode(user.token)
+        const decode = jwtDecode(user.token) // btw this is unnecessary as our backend is validating token
     }
     catch(err)
     {
